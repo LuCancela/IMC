@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMC para homens</title>
+    <style>
+
+        body {
+            background-image: url(./img1.jpg);
+            height: 100vh;
+            background-size: cover;
+            background-position: 100% 80%;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: rgb(255, 255, 255);
+            font-family: sans-serif;
+        }
+
+        img {
+            filter: invert(100%);
+            position: absolute;
+            opacity: 10%;
+            width: 70%;
+        }
+
+        h3 {
+        filter: drop-shadow( 0px 0px 5px #00fd94);
+        }
+
+        .calculadora {
+            width: 400px;
+            height: 300px;
+            padding: 30px 0 0 0;
+            border-radius: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            backdrop-filter: blur(20px);
+            border: 1px solid #ff0000;
+            font-size: 1.5rem;
+        }
+
+        input {
+            border-radius: 20px;
+            border: none;
+            height: 30px;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        #botao {
+            border-radius: 20px;
+            background-color: rgb(5, 5, 5);
+            border: none;
+            width: 50%;
+            height: 40px;
+            padding: 10px 20px;
+            color: white;
+            transition: 1s;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 5px;
+        }
+
+        #botao:hover {
+            background-color: rgb(0, 0, 0);
+        }
+
+        .none {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <img src="/src/Sigimg1.jpg" alt="">
+    <h1>IMC para homens de 45 anos de signo touro</h1>
+    <div class="calculadora">
+        Coloque sua altura<input type="number" id="altura">
+        Coloque seu peso<input type="number" id="peso">
+
+        <input type="submit" value="Calcular" id="botao" onclick="calcular()">
+        <h3 id="resultado"></h3>
+    </div>
+
+        <div id="magreza" class="none"><h3>Seu IMC é menor que 18,5 e você está muito magro</h3></div>
+        <div id="normal" class="none"><h3>Seu IMC é entre 18,5 e 24,9 e você está normal</h3></div>
+        <div id="sobrepeso" class="none"><h3>Seu IMC é entre 25,0 29,9 e você está com sobrepeso</h3></div>
+        <div id="obesidade" class="none"><h3>Seu IMC é entre 30,0 e 39,9 e você está com obesidade =O</h3></div>
+        <div id="obesidadeGrave" class="none"><h3>Seu IMC é maior que 40.0 e você está com obesidade grave</h3></div>
+
+
+    <script>
+        var altura = document.getElementById('altura')
+        var peso = document.getElementById('peso')
+        var botao = document.getElementById('botao')
+        var resultado = document.getElementById('resultado')
+        
+        function calcular () {
+
+            let valorAltura = altura.value
+            let valorPeso = peso.value
+
+            Number(valorAltura)
+            Number(valorPeso)
+            
+            
+            console.log(valorAltura)
+            console.log(valorPeso)
+
+            let conta = (valorPeso / (valorAltura * valorAltura))
+
+            conta = conta.toFixed(2)
+    
+            resultado.innerHTML = `Seu IMC é ${conta}`
+
+            if (conta < 18.5) {
+                document.getElementById('magreza').classList.remove('none')
+                document.getElementById('normal').classList.add('none')
+                document.getElementById('sobrepeso').classList.add('none')
+                document.getElementById('obesidade').classList.add('none')
+                document.getElementById('obesidadeGrave').classList.add('none')
+            }
+             else if (conta >= 18.5 && conta <= 24.9) {
+                document.getElementById('magreza').classList.add('none')
+                document.getElementById('normal').classList.remove('none')
+                document.getElementById('sobrepeso').classList.add('none')
+                document.getElementById('obesidade').classList.add('none')
+                document.getElementById('obesidadeGrave').classList.add('none')
+            }
+             else if (conta >= 25 && conta <= 29.9) {
+                document.getElementById('magreza').classList.add('none')
+                document.getElementById('normal').classList.add('none')
+                document.getElementById('sobrepeso').classList.remove('none')
+                document.getElementById('obesidade').classList.add('none')
+                document.getElementById('obesidadeGrave').classList.add('none')
+            }
+             else if (conta >= 30 && conta <= 39.9) {
+                document.getElementById('magreza').classList.add('none')
+                document.getElementById('normal').classList.add('none')
+                document.getElementById('sobrepeso').classList.add('none')
+                document.getElementById('obesidade').classList.remove('none')
+                document.getElementById('obesidadeGrave').classList.add('none')
+            } 
+            else if (conta >= 40) {
+                document.getElementById('magreza').classList.add('none')
+                document.getElementById('normal').classList.add('none')
+                document.getElementById('sobrepeso').classList.add('none')
+                document.getElementById('obesidade').classList.add('none')
+                document.getElementById('obesidadeGrave').classList.remove('none')
+            }
+
+        }
+
+
+    </script>
+
+</body>
+</html>
